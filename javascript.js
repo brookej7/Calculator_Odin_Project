@@ -2,7 +2,7 @@ let NUM1;
 let NUM2;
 let OPERATOR;
 let DISPLAY_VAL = 0;
-let SWAP_NUM = false;
+let NEW_NUM = true;
 
 function add(num1, num2) {
 
@@ -68,29 +68,17 @@ function display(toDisplay) {
 }
 
 function updateNumber(currDisplay, currNum) {
-    
-    if (currDisplay == "0") {
 
+    if (NEW_NUM) {
+        
+        NEW_NUM = false;
         return currNum;
 
-    } else if (currNum == null) {
-
-        return 0;
-
-    } else {
-
-        if (NUM1 != null & SWAP_NUM == false) {
-
-            SWAP_NUM = true;
-            return currNum;
-
-        }
-
-        return currDisplay.concat(currNum);
-
     }
-
+    
+    return currDisplay.concat(currNum);
 }
+
 
 const buttons = document.querySelectorAll("button");
 
@@ -112,7 +100,7 @@ buttons.forEach((button) => {
                 NUM1 = null;
                 NUM2 = null;
                 OPERATOR = null;
-                SWAP_NUM = false;
+                NEW_NUM = true;
 
             }
             
@@ -122,15 +110,23 @@ buttons.forEach((button) => {
             NUM1 = null;
             NUM2 = null;
             OPERATOR = null;
-            SWAP_NUM = false;
+            NEW_NUM = true;
             DISPLAY_VAL = 0
             display(DISPLAY_VAL);
 
         } else if (button.parentNode.parentNode.querySelector(".operators") != null) {
+
+            if (OPERATOR != null) {
+
+                NUM2 = parseFloat(DISPLAY_VAL);
+                DISPLAY_VAL = operate(NUM1, NUM2, OPERATOR);
+                display(DISPLAY_VAL)
+
+            }
             
             OPERATOR = button.textContent;
             NUM1 = parseFloat(DISPLAY_VAL);
-            console.log(OPERATOR);
+            NEW_NUM = true;
 
         } else {
             
