@@ -174,7 +174,6 @@ buttons.forEach((button) => {
 
             }
 
-
             
             OPERATOR = button.textContent;
             opButtons = document.querySelectorAll(".operators");
@@ -206,4 +205,127 @@ buttons.forEach((button) => {
 
         }
     });
+});
+
+
+let calculator = document.querySelector("body")
+
+function buttonPress(keyPress) {
+
+    if (keyPress == '/' | keyPress == '*' | keyPress == '-' | keyPress == '+') {
+
+        if (keyPress == "*") {
+            keyPress = 'x';
+        }
+
+        if (OPERATOR != null) {
+
+            if (DISPLAY_VAL == "+99999999") {
+                DISPLAY_VAL = "999999999";
+            }
+            NUM2 = parseFloat(DISPLAY_VAL);
+            DISPLAY_VAL = operate(NUM1, NUM2, OPERATOR);
+            display(DISPLAY_VAL)
+
+        }
+
+        OPERATOR = keyPress;
+        opButtons = document.querySelectorAll(".operators");
+        opButtons.forEach((opBut) => {
+                    
+            let newStyle;
+            if(opBut.textContent == keyPress) {
+
+                newStyle= `opacity:0.5`;
+
+            } else {
+
+                newStyle = `opacity:1`;
+
+            }
+            opBut.setAttribute("style", newStyle);
+        })
+        if (DISPLAY_VAL == "+99999999") {
+            DISPLAY_VAL = "999999999";
+        }
+        NUM1 = parseFloat(DISPLAY_VAL);
+        NEW_NUM = true;
+
+    } else if (keyPress == "Enter" || keyPress == "=") {
+
+        if (NUM1 == null & NUM2 == null & OPERATOR == null) {
+
+            ;
+
+        } else {
+
+            if (DISPLAY_VAL == "+99999999") {
+                DISPLAY_VAL = "999999999";
+            }
+            NUM2 = parseFloat(DISPLAY_VAL);
+            DISPLAY_VAL = operate(NUM1, NUM2, OPERATOR);
+            display(DISPLAY_VAL)
+            NUM1 = null;
+            NUM2 = null;
+            OPERATOR = null;
+            NEW_NUM = true;
+            opButtons = document.querySelectorAll(".operators");
+            opButtons.forEach((opBut) => {
+                        
+                let newStyle= `opacity:1`;
+                opBut.setAttribute("style", newStyle);
+            })
+        }
+
+    } else if (keyPress == '.') {
+
+        if (DISPLAY_VAL.includes('.')) {
+
+            return;
+
+        } else if (DISPLAY_VAL == "0") {
+
+
+            NEW_NUM = false;
+        }
+        let nextNumber = keyPress;
+        DISPLAY_VAL = updateNumber(DISPLAY_VAL, nextNumber);
+        display(DISPLAY_VAL);
+
+    } else if (keyPress == "c"){
+            
+        NUM1 = null;
+        NUM2 = null;
+        OPERATOR = null;
+        NEW_NUM = true;
+        DISPLAY_VAL = 0
+        display(DISPLAY_VAL);
+        opButtons = document.querySelectorAll(".operators");
+        opButtons.forEach((opBut) => {
+                    
+            let newStyle= `opacity:1`;
+            opBut.setAttribute("style", newStyle);
+        })
+
+    } else if (keyPress == "Backspace") {
+
+        if (DISPLAY_VAL.length == 1) {
+            DISPLAY_VAL = "0";
+            NEW_NUM = true;
+        } else {
+            DISPLAY_VAL = DISPLAY_VAL.slice(0, DISPLAY_VAL.length - 1);
+        }
+        display(DISPLAY_VAL);
+    }
+
+    if(Number.parseFloat(keyPress)){
+        
+        DISPLAY_VAL = updateNumber(DISPLAY_VAL, keyPress);
+        display(DISPLAY_VAL);
+
+    }
+}
+
+calculator.addEventListener("keydown", (event) => {
+    buttonPress(event.key);
 });
