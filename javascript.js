@@ -171,6 +171,13 @@ buttons.forEach((button) => {
 
         } else {
             
+            if (button.id == "dec") {
+                if (DISPLAY_VAL.includes('.')) {
+                    return;
+                } else if (DISPLAY_VAL == "0") {
+                    NEW_NUM = false;
+                }
+            }
             let nextNumber = button.textContent;
             DISPLAY_VAL = updateNumber(DISPLAY_VAL, nextNumber);
             display(DISPLAY_VAL);
