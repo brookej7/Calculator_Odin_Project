@@ -126,6 +126,12 @@ buttons.forEach((button) => {
                 NUM2 = null;
                 OPERATOR = null;
                 NEW_NUM = true;
+                opButtons = document.querySelectorAll(".operators");
+                opButtons.forEach((opBut) => {
+                            
+                    let newStyle= `opacity:1`;
+                    opBut.setAttribute("style", newStyle);
+                })
 
             }
             
@@ -138,6 +144,12 @@ buttons.forEach((button) => {
             NEW_NUM = true;
             DISPLAY_VAL = 0
             display(DISPLAY_VAL);
+            opButtons = document.querySelectorAll(".operators");
+            opButtons.forEach((opBut) => {
+                        
+                let newStyle= `opacity:1`;
+                opBut.setAttribute("style", newStyle);
+            })
 
         } else if (button.id == "backspace") {
 
@@ -149,7 +161,7 @@ buttons.forEach((button) => {
             }
             display(DISPLAY_VAL);
 
-        } else if (button.parentNode.parentNode.querySelector(".operators") != null) {
+        } else if (button.parentNode.querySelector(".operators") != null) {
 
             if (OPERATOR != null) {
 
@@ -161,8 +173,12 @@ buttons.forEach((button) => {
                 display(DISPLAY_VAL)
 
             }
+
+
             
             OPERATOR = button.textContent;
+            let newStyle= `opacity:0.5`;
+            button.setAttribute("style", newStyle);
             if (DISPLAY_VAL == "+99999999") {
                 DISPLAY_VAL = "999999999";
             }

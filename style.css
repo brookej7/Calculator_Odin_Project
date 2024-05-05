@@ -18,6 +18,7 @@ body {
     height: 500px;
     flex-direction: column;
     border: 5px black solid;
+    background-color: #1b1919;
 }
 
 #screen {
@@ -55,7 +56,7 @@ body {
 }
 
 .row {
-    flex-grow: 0.25;
+    flex-grow: 1;
     flex-basis: content;
 }
 
@@ -63,8 +64,10 @@ button {
     flex-grow: 1;
     font-size: 50px;
     margin: 0;
-    padding: 0;
+    padding: 5px;
     width: 50px;
+    border-radius: 10px;
+    background-color: #27aeb3;
 }
 
 #clear {
@@ -83,4 +86,17 @@ button {
 #dec {
     flex-grow: 0.33;
     flex-basis: content;
+}
+
+.col {
+    flex-grow: 0.25;
+}
+
+.operators {
+    background-color: #f7f746;
+    opacity: 1;
+}
+
+.other {
+    background-color: #bb57e3;
 }
