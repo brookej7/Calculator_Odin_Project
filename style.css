@@ -14,10 +14,10 @@ body {
 
 #calculator {
     margin: 25vh 35vw;
-    width: 250px;
+    width: 350px;
+    height: 500px;
     flex-direction: column;
     border: 5px black solid;
-    flex-grow: 1;
 }
 
 #screen {
@@ -25,8 +25,9 @@ body {
     background-color: #faf7f7;
     align-items: center;
     justify-content: right;
-    font-size: 40px;
+    font-size: 65px;
     height: 80px;
+    padding: 10px;
 }
 
 .operators {

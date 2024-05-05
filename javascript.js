@@ -1,7 +1,7 @@
 let NUM1;
 let NUM2;
 let OPERATOR;
-let DISPLAY_VAL = 0;
+let DISPLAY_VAL = "0";
 let NEW_NUM = true;
 
 function add(num1, num2) {
@@ -20,7 +20,12 @@ function divide(num1, num2) {
 
     if (num2 == 0) {
 
-        return 'error'
+        NUM1 = null;
+        NUM2 = null;
+        OPERATOR = null;
+        NEW_NUM = true;
+
+        return 'you tried and failed';
 
     }
 
@@ -54,6 +59,19 @@ function operate(num1, num2, operator) {
         case 'x':
             result = multiply(num1, num2);
             break
+    }    
+
+    let stringResult = result.toString()
+
+    if (stringResult.length > 9) {
+
+        if(result > 999999999) {
+            return "+999999999"
+        }
+        
+        result = stringResult.substr(0, 8) + Math.round(parseInt(stringResult[9])).toString();
+        return result;
+
     }
 
     return result.toString()
@@ -75,6 +93,10 @@ function updateNumber(currDisplay, currNum) {
         return currNum;
 
     }
+
+    if (currDisplay.length >= 9) {
+        return currDisplay;
+    }
     
     return currDisplay.concat(currNum);
 }
@@ -94,6 +116,9 @@ buttons.forEach((button) => {
 
             } else {
 
+                if (DISPLAY_VAL == "+99999999") {
+                    DISPLAY_VAL = "999999999";
+                }
                 NUM2 = parseFloat(DISPLAY_VAL);
                 DISPLAY_VAL = operate(NUM1, NUM2, OPERATOR);
                 display(DISPLAY_VAL)
@@ -118,6 +143,9 @@ buttons.forEach((button) => {
 
             if (OPERATOR != null) {
 
+                if (DISPLAY_VAL == "+99999999") {
+                    DISPLAY_VAL = "999999999";
+                }
                 NUM2 = parseFloat(DISPLAY_VAL);
                 DISPLAY_VAL = operate(NUM1, NUM2, OPERATOR);
                 display(DISPLAY_VAL)
@@ -125,6 +153,9 @@ buttons.forEach((button) => {
             }
             
             OPERATOR = button.textContent;
+            if (DISPLAY_VAL == "+99999999") {
+                DISPLAY_VAL = "999999999";
+            }
             NUM1 = parseFloat(DISPLAY_VAL);
             NEW_NUM = true;
 
