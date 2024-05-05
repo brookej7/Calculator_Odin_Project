@@ -7,39 +7,56 @@
     <script src="javascript.js" defer></script>
     <title>Calculator</title>
 </head>
-<body>
-    <div id="calculator">
-        <div id="screen">
+<body class="flex">
+    <div id="calculator" class="flex">
+        <div id="screen" class="flex">
+            
+            80980
 
         </div>
 
-        <div class="operators">
+        <div class="operators flex">
             <button>+</button>
             <button>-</button>
             <button>x</button>
             <button>/</button>
         </div>
 
-        <div class="square">
+        <div class="square flex">
 
-            <div class="numbers">
-                <button>7</button>
-                <button>8</button>
-                <button>9</button>
-                <button>4</button>
-                <button>5</button>
-                <button>6</button>
-                <button>1</button>
-                <button>2</button>
-                <button>3</button>
-                <button id ="zero">0</button>
-                <!--<button>.</button>-->
+            <div class="numbers flex">
+                <div class="row flex">
+                    <button>7</button>
+                    <button>8</button>
+                    <button>9</button>
+                </div>
+                
+                <div class="row flex">
+                    <button>4</button>
+                    <button>5</button>
+                    <button>6</button>
+                </div>
+
+                <div class="row flex">
+                    <button>1</button>
+                    <button>2</button>
+                    <button>3</button>
+                </div>
+                
+                <div class="row flex">
+                    <button id ="zero">0</button>
+                    <!--<button>.</button>-->
+                </div>
+                
             </div>
 
-            <div class="side">
-                
-                <button id = "clear">C</button>
-                <button>=</button>
+            <div class="side flex">
+                <div class="flex row">
+                    <button id = "clear">C</button>
+                </div>
+                <div class="flex row">
+                    <button id = "equal">=</button>
+                </div>
 
             </div>
         </div>

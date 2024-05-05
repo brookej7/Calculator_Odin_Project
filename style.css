@@ -1,0 +1,64 @@
+body {
+    margin: 0;
+    height: 100vh;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.flex {
+    display: flex;
+}
+
+#calculator {
+    margin: 25vh 25vw;
+    flex-grow: 1;
+    flex-direction: column;
+    border: 5px black solid;
+}
+
+#screen {
+    flex-grow: 1;
+    background-color: #faf7f7;
+    align-items: center;
+    justify-content: right;
+    font-size: 40px;
+}
+
+.operators {
+    flex-grow: 1;
+}
+
+.square {
+    flex-grow: 4;
+    flex-wrap: 0;
+    
+}
+
+.numbers{
+    flex-direction: column;
+    flex-grow: 3;
+}
+
+#zero {
+    flex-grow: 1;
+}
+
+.side {
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.row {
+    flex-grow: 1;
+}
+
+button {
+    flex-grow: 1;
+    font-size: 50px;
+    margin: 0;
+    padding: 0;
+    width: 50px;
+}
+
+#clear {
+    flex-grow: 1;
+}
