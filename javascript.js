@@ -177,6 +177,12 @@ buttons.forEach((button) => {
 
             
             OPERATOR = button.textContent;
+            opButtons = document.querySelectorAll(".operators");
+            opButtons.forEach((opBut) => {
+                        
+                let newStyle= `opacity:1`;
+                opBut.setAttribute("style", newStyle);
+            })
             let newStyle= `opacity:0.5`;
             button.setAttribute("style", newStyle);
             if (DISPLAY_VAL == "+99999999") {
