@@ -51,10 +51,12 @@ body {
 .side {
     flex-direction: column;
     flex-grow: 1;
+    flex-basis: content;
 }
 
 .row {
-    flex-grow: 1;
+    flex-grow: 0.25;
+    flex-basis: content;
 }
 
 button {
@@ -67,4 +69,18 @@ button {
 
 #clear {
     flex-grow: 1;
+}
+
+#large {
+    flex-grow: 1.4;
+}
+
+#zero {
+    flex-grow: 0.67;
+    flex-basis: content;
+}
+
+#dec {
+    flex-grow: 0.33;
+    flex-basis: content;
 }

@@ -139,6 +139,16 @@ buttons.forEach((button) => {
             DISPLAY_VAL = 0
             display(DISPLAY_VAL);
 
+        } else if (button.id == "backspace") {
+
+            if (DISPLAY_VAL.length == 1) {
+                DISPLAY_VAL = "0";
+                NEW_NUM = true;
+            } else {
+                DISPLAY_VAL = DISPLAY_VAL.slice(0, DISPLAY_VAL.length - 1);
+            }
+            display(DISPLAY_VAL);
+
         } else if (button.parentNode.parentNode.querySelector(".operators") != null) {
 
             if (OPERATOR != null) {
