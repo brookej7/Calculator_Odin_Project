@@ -1,7 +1,8 @@
 let NUM1;
 let NUM2;
 let OPERATOR;
-let DISPLAY_VAL;
+let DISPLAY_VAL = 0;
+let SWAP_NUM = false;
 
 function add(num1, num2) {
 
@@ -50,36 +51,44 @@ function operate(num1, num2, operator) {
             result = divide(num1, num2);
             break
 
-        case '*':
+        case 'x':
             result = multiply(num1, num2);
             break
     }
 
-    return result
+    return result.toString()
 
 }
 
-function display_num(toDisplay) {
+function display(toDisplay) {
 
     let screen = document.querySelector("#screen");
-    let currDisplay = screen.textContent.trim()
-    if (currDisplay== "0") {
-        
-        screen.textContent = toDisplay;
-        return toDisplay;
-
-    } else if (toDisplay == null) {
-
-        screen.textContent = 0;
-        return toDisplay;
-
-    }
-
-    toDisplay = screen.textContent.concat(toDisplay);
     screen.textContent = toDisplay;
 
-    return toDisplay;
+}
 
+function updateNumber(currDisplay, currNum) {
+    
+    if (currDisplay == "0") {
+
+        return currNum;
+
+    } else if (currNum == null) {
+
+        return 0;
+
+    } else {
+
+        if (NUM1 != null & SWAP_NUM == false) {
+
+            SWAP_NUM = true;
+            return currNum;
+
+        }
+
+        return currDisplay.concat(currNum);
+
+    }
 
 }
 
@@ -90,25 +99,44 @@ buttons.forEach((button) => {
     button.addEventListener("click", () => {
 
         if(button.id == "equal") {
+            
+            if (NUM1 == null & NUM2 == null & OPERATOR == null) {
 
-            DISPLAY_VAL = operate(NUM1, NUM2, OPERATOR);
-            display_num(DISPLAY_VAL)
+                ;
+
+            } else {
+
+                NUM2 = parseFloat(DISPLAY_VAL);
+                DISPLAY_VAL = operate(NUM1, NUM2, OPERATOR);
+                display(DISPLAY_VAL)
+                NUM1 = null;
+                NUM2 = null;
+                OPERATOR = null;
+                SWAP_NUM = false;
+
+            }
+            
 
         } else if (button.id == "clear"){
             
             NUM1 = null;
             NUM2 = null;
             OPERATOR = null;
-            DISPLAY_VAL = display_num(null);
+            SWAP_NUM = false;
+            DISPLAY_VAL = 0
+            display(DISPLAY_VAL);
 
         } else if (button.parentNode.parentNode.querySelector(".operators") != null) {
-
+            
             OPERATOR = button.textContent;
+            NUM1 = parseFloat(DISPLAY_VAL);
+            console.log(OPERATOR);
 
         } else {
             
             let nextNumber = button.textContent;
-            DISPLAY_VAL = display_num(nextNumber);
+            DISPLAY_VAL = updateNumber(DISPLAY_VAL, nextNumber);
+            display(DISPLAY_VAL);
 
         }
     });
